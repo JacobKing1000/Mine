@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS AJAX Short</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+<div class="bg-white p-6 rounded shadow w-96 text-center">
+  <h2 class="text-xl font-bold mb-4 text-blue-600">JS & AJAX</h2>
+
+  <button onclick="alertPopup()"
+    class="bg-blue-500 text-white px-4 py-2 mb-2 rounded w-full">
+    Alert Popup
+  </button>
+
+  <button onclick="changeText()"
+    class="bg-green-500 text-white px-4 py-2 mb-2 rounded w-full">
+    Change Text
+  </button>
+
+  <button onclick="loadData()"
+    class="bg-purple-500 text-white px-4 py-2 rounded w-full">
+    Load AJAX Data
+  </button>
+
+  <p id="text" class="mt-4">Original Text</p>
+  <div id="result" class="mt-3 text-sm"></div>
+</div>
+
+<script>
+function alertPopup() {
+  alert("JavaScript Alert Popup");
+}
+
+function changeText() {
+  text.innerHTML = "Text changed using JavaScript";
+}
+
+function loadData() {
+  if (!confirm("Load data from server?")) return;
+
+  const x = new XMLHttpRequest();
+  x.open("GET", "https://jsonplaceholder.typicode.com/users/1", true);
+
+  x.onload = () => {
+    const d = JSON.parse(x.responseText);
+    result.innerHTML = `${d.name} | ${d.email}`;
+  };
+
+  x.send();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Manipulation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+<div class="bg-white p-6 rounded shadow-md text-center w-96">
+  <h2 id="text" class="text-lg mb-4 text-gray-700">
+    This is the original text
+  </h2>
+
+  <button onclick="changeText()"
+    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+    Change Text
+  </button>
+</div>
+
+<script>
+function changeText() {
+  const element = document.getElementById("text");
+  element.innerHTML = "Text changed using JavaScript DOM manipulation.";
+  element.style.color = "green";
+}
+</script>
+
+</body>
+</html>
