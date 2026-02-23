@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .traffic-light {
+            width: 100px;
+            height: 300px;
+            background-color: #222;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: #555;
+            transition: 0.3s;
+        }
+        .light.active {
+            box-shadow: 0 0 20px currentColor;
+        }
+        .red.active {
+            background-color: #ff0000;
+            color: #ff0000;
+        }
+        .yellow.active {
+            background-color: #ffff00;
+            color: #ffff00;
+        }
+        .green.active {
+            background-color: #00ff00;
+            color: #00ff00;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+        </div>
+        <button onclick="changeLight()">Change Light</button>
+    </div>
+
+    <script>
+        const lights = document.querySelectorAll('.light');
+        let currentIndex = 0;
+
+        function changeLight() {
+            lights.forEach(light => light.classList.remove('active'));
+            lights[currentIndex].classList.add('active');
+            currentIndex = (currentIndex + 1) % lights.length;
+        }
+    </script>
+</html>

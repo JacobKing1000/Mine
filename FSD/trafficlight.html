@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Controller</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #333;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        .traffic-light {
+            width: 100px;
+            height: 300px;
+            background-color: #222;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: #555;
+            transition: 0.3s;
+        }
+        
+        .light.active {
+            box-shadow: 0 0 20px currentColor;
+        }
+        
+        .red.active {
+            background-color: #ff0000;
+            color: #ff0000;
+        }
+        
+        .yellow.active {
+            background-color: #ffff00;
+            color: #ffff00;
+        }
+        
+        .green.active {
+            background-color: #00ff00;
+            color: #00ff00;
+        }
+        
+        button {
+            padding: 12px 24px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        h1 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Light Controller</h1>
+        <div class="traffic-light">
+            <div class="light red active" id="red"></div>
+            <div class="light yellow" id="yellow"></div>
+            <div class="light green" id="green"></div>
+        </div>
+        
+        <button onclick="setLight('red')">Red</button>
+        <button onclick="setLight('yellow')">Yellow</button>
+        <button onclick="setLight('green')">Green</button>
+    </div>
+    
+    <script>
+        function setLight(color) {
+            document.getElementById('red').classList.remove('active');
+            document.getElementById('yellow').classList.remove('active');
+            document.getElementById('green').classList.remove('active');
+            
+            document.getElementById(color).classList.add('active');
+        }
+    </script>
+</body>
+</html>
