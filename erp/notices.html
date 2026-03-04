@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College ERP - Notices</title>
+
+<style>
+:root{
+  --bg1:#e6d197;
+  --bg2:#eddcb0;
+  --glass:rgba(255,255,255,.55);
+  --glass-border:rgba(255,255,255,.8);
+  --text:#162e45;
+  --sub:#546b7d;
+  --accent:#7f5a00;
+  --shadow:0 18px 40px rgba(0,0,0,.15);
+  --gap:20px;
+}
+
+body[data-theme="dark"]{
+  --bg1:#1a1730;
+  --bg2:#2c2555;
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.15);
+  --text:#e8f1ff;
+  --sub:#a4b4cf;
+  --accent:#d6c3ff;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,255,255,.4),transparent 40%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+main{
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+}
+
+/* Glass */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(14px);
+  padding:20px;
+}
+
+/* TOP STRIP */
+.top-strip{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  z-index:1000;
+}
+
+.notice-tag{
+  background:rgba(0,0,0,.08);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  margin-right:8px;
+}
+
+.profile-wrap{
+  position:relative;
+  z-index:2000;
+}
+
+.profile-btn{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:999px;
+  padding:8px 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.avatar{
+  width:32px;height:32px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--accent);
+  color:white;
+  font-size:.8rem;
+}
+
+/* DROPDOWN */
+.modern-sidebar{
+  position:absolute;
+  right:0;
+  top:60px;
+  width:270px;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  box-shadow:0 40px 80px rgba(0,0,0,.3);
+  padding:15px;
+  display:none;
+  z-index:9999;
+}
+
+.modern-sidebar.open{display:block;}
+
+.menu-link{
+  display:block;
+  padding:10px 12px;
+  margin-bottom:8px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--text);
+  background:rgba(0,0,0,.05);
+  transition:.2s;
+}
+
+body[data-theme="dark"] .menu-link{
+  background:rgba(255,255,255,.08);
+}
+
+.menu-link:hover{
+  background:var(--accent);
+  color:white;
+  transform:translateX(4px);
+}
+
+.divider{
+  height:1px;
+  background:var(--glass-border);
+  margin:12px 0;
+}
+
+/* Notices */
+.notice-item{
+  padding:12px 0;
+  border-bottom:1px solid var(--glass-border);
+}
+
+.notice-item:last-child{
+  border-bottom:none;
+}
+
+.muted{
+  color:var(--sub);
+  margin-top:4px;
+}
+
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<!-- TOP STRIP -->
+<section class="glass top-strip">
+  <div>
+    <span class="notice-tag">PAGE</span>
+    <span>Notices & Announcements</span>
+  </div>
+
+  <div class="profile-wrap">
+    <button id="profileBtn" class="profile-btn">
+      <span class="avatar">SN</span>
+      Student Name
+    </button>
+
+    <div id="roleMenu" class="modern-sidebar">
+      <a href="home.html" class="menu-link">🏠 Home</a>
+      <a href="timetable.html" class="menu-link">📅 Timetable</a>
+      <a href="fees.html" class="menu-link">💳 Fees</a>
+      <a href="marks-records.html" class="menu-link">📊 Marks</a>
+      <a href="attendance.html" class="menu-link">📌 Attendance</a>
+      <a href="notices.html" class="menu-link">📢 Notices</a>
+      <a href="settings.html" class="menu-link">⚙ Settings</a>
+
+      <div class="divider"></div>
+
+      <a href="#" id="themeToggle" class="menu-link">🌙 Toggle Theme</a>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE CONTENT -->
+<section class="glass">
+  <div class="notice-item">
+    <strong>Hackathon Registration Open</strong>
+    <div class="muted">Deadline: March 2</div>
+  </div>
+
+  <div class="notice-item">
+    <strong>Mid-Sem Results Published</strong>
+    <div class="muted">Check Marks & Records page</div>
+  </div>
+
+  <div class="notice-item">
+    <strong>Library Hours Extended</strong>
+    <div class="muted">8:00 AM to 9:00 PM from Monday</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const profileBtn=document.getElementById("profileBtn");
+const roleMenu=document.getElementById("roleMenu");
+const themeToggle=document.getElementById("themeToggle");
+
+profileBtn.onclick=()=>roleMenu.classList.toggle("open");
+
+document.addEventListener("click",e=>{
+ if(!roleMenu.contains(e.target)&&!profileBtn.contains(e.target)){
+   roleMenu.classList.remove("open");
+ }
+});
+
+themeToggle.onclick=(e)=>{
+ e.preventDefault();
+ const current=document.body.getAttribute("data-theme");
+ document.body.setAttribute("data-theme",current==="dark"?"light":"dark");
+};
+</script>
+
+</body>
+</html>
