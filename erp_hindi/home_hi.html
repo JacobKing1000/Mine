@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College ERP - होम</title>
+
+<style>
+:root{
+  --bg1:#e6d197;
+  --bg2:#eddcb0;
+  --glass:rgba(255,255,255,.55);
+  --glass-border:rgba(255,255,255,.8);
+  --text:#2c2411;
+  --sub:#6b5830;
+  --accent:#7f5a00;
+  --shadow:0 18px 40px rgba(0,0,0,.15);
+  --ok:#2f7a42;
+  --warn:#a06d07;
+  --gap:20px;
+}
+
+body[data-theme="dark"]{
+  --bg1:#1a1730;
+  --bg2:#2c2555;
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.15);
+  --text:#f3efff;
+  --sub:#c8bcf5;
+  --accent:#d6c3ff;
+  --ok:#83e9a0;
+  --warn:#ffd06a;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,255,255,.4),transparent 40%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+main{
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+  position:relative;
+}
+
+/* Glass */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(14px);
+  padding:20px;
+}
+
+/* TOP STRIP */
+.top-strip{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  z-index:1000;
+}
+
+.notice-tag{
+  background:rgba(0,0,0,.08);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  margin-right:8px;
+}
+
+.profile-wrap{
+  position:relative;
+  z-index:2000;
+}
+
+.profile-btn{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:999px;
+  padding:8px 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.avatar{
+  width:32px;height:32px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--accent);
+  color:white;
+  font-size:.8rem;
+}
+
+/* DROPDOWN */
+.modern-sidebar{
+  position:absolute;
+  right:0;
+  top:60px;
+  width:270px;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  box-shadow:0 40px 80px rgba(0,0,0,.3);
+  padding:15px;
+  display:none;
+  z-index:9999;
+}
+
+.modern-sidebar.open{
+  display:block;
+}
+
+.menu-link{
+  display:block;
+  padding:10px 12px;
+  margin-bottom:8px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--text);
+  background:rgba(0,0,0,.05);
+  transition:.2s;
+}
+
+body[data-theme="dark"] .menu-link{
+  background:rgba(255,255,255,.08);
+}
+
+.menu-link:hover{
+  background:var(--accent);
+  color:white;
+  transform:translateX(4px);
+}
+
+.divider{
+  height:1px;
+  background:var(--glass-border);
+  margin:12px 0;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:var(--gap);
+}
+
+.card{grid-column:span 3;}
+.half{grid-column:span 6;}
+
+.label{color:var(--sub);}
+.value{font-size:1.4rem;font-weight:700;margin-top:6px;}
+
+.table-wrap{overflow-x:auto;margin-top:10px;}
+table{width:100%;border-collapse:collapse;min-width:600px;}
+th,td{padding:10px;border-bottom:1px solid var(--glass-border);}
+
+.fees-list{display:grid;gap:12px;margin-top:10px;}
+.fee-item{
+  display:flex;
+  justify-content:space-between;
+  border:1px solid var(--glass-border);
+  border-radius:12px;
+  padding:10px;
+  background:rgba(0,0,0,.05);
+}
+
+body[data-theme="dark"] .fee-item{
+  background:rgba(255,255,255,.05);
+}
+
+.pill{
+  font-size:.75rem;
+  border-radius:999px;
+  padding:4px 10px;
+  font-weight:600;
+}
+.ok{background:rgba(47,122,66,.2);color:var(--ok);}
+.warn{background:rgba(160,109,7,.2);color:var(--warn);}
+
+@media(max-width:1000px){
+  .card,.half{grid-column:span 12;}
+  .hero{flex-direction:column;gap:10px;align-items:flex-start;}
+}
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<section class="glass top-strip">
+  <div>
+    <span class="notice-tag">NOTICE</span>
+    <span id="noticeText">स्वागत है to CampusERP</span>
+  </div>
+
+  <div class="profile-wrap">
+    <button id="profileBtn" class="profile-btn">
+      <span class="avatar">SN</span>
+      छात्र नाम
+    </button>
+
+    <div id="roleMenu" class="modern-sidebar">
+      <a href="home_hi.html" class="menu-link">🏠 होम</a>
+      <a href="timetable_hi.html" class="menu-link">📅 समय सारणी</a>
+      <a href="fees_hi.html" class="menu-link">💳 शुल्क</a>
+      <a href="marks-records.html" class="menu-link">📊 अंक</a>
+      <a href="attendance_hi.html" class="menu-link">📌 उपस्थिति</a>
+      <a href="notices_hi.html" class="menu-link">📢 सूचनाएँ</a>
+      <a href="settings_hi.html" class="menu-link">⚙ सेटिंग्स</a>
+
+      <div class="divider"></div>
+
+      <a href="#" id="themeToggle" class="menu-link">🌙 Toggle Theme</a>
+    </div>
+  </div>
+</section>
+
+<section class="glass hero">
+  <div>
+    <strong>स्वागत है, Student</strong>
+    <p style="color:var(--sub);margin-top:5px;">Improved dashboard with timetable and fee status.</p>
+  </div>
+  <span style="background:var(--accent);color:white;padding:6px 12px;border-radius:999px;">सेमेस्टर 6 Active</span>
+</section>
+
+<section class="grid">
+  <div class="glass card"><div class="label">Today Classes</div><div class="value">5</div></div>
+  <div class="glass card"><div class="label">उपस्थिति</div><div class="value">88%</div></div>
+  <div class="glass card"><div class="label">Pending Fee</div><div class="value">₹36,000</div></div>
+  <div class="glass card"><div class="label">Current CGPA</div><div class="value">8.41</div></div>
+</section>
+
+<section class="glass">
+<h3>Today समय सारणी</h3>
+<div class="table-wrap">
+<table>
+<tr><th>समय</th><th>Class</th><th>Venue</th><th>शिक्षक</th></tr>
+<tr><td>09:00 - 10:30</td><td>Data Structures</td><td>कक्ष B-204</td><td>Dr. R. Sharma</td></tr>
+<tr><td>11:00 - 12:30</td><td>DBMS प्रयोगशाला</td><td>प्रयोगशाला 3</td><td>Prof. K. Nair</td></tr>
+<tr><td>14:00 - 15:00</td><td>Software Engineering</td><td>कक्ष A-109</td><td>Dr. M. Verma</td></tr>
+<tr><td>15:15 - 16:15</td><td>Computer Networks</td><td>कक्ष C-301</td><td>Prof. A. Sinha</td></tr>
+</table>
+</div>
+</section>
+
+<section class="grid">
+  <div class="glass half">
+    <h3>Quarter Fee Status</h3>
+    <div class="fees-list">
+      <div class="fee-item"><span>Quarter 1</span><span class="pill ok">Submitted</span></div>
+      <div class="fee-item"><span>Quarter 2</span><span class="pill ok">Submitted</span></div>
+      <div class="fee-item"><span>Quarter 3</span><span class="pill warn">Pending</span></div>
+      <div class="fee-item"><span>Quarter 4</span><span class="pill warn">Pending</span></div>
+    </div>
+  </div>
+
+  <div class="glass half">
+    <h3>Important Tasks</h3>
+    <div class="fees-list">
+      <div class="fee-item"><span>Assignment 4</span><span class="pill warn">Open</span></div>
+      <div class="fee-item"><span>प्रयोगशाला Record</span><span class="pill warn">Open</span></div>
+      <div class="fee-item"><span>Seminar Abstract</span><span class="pill ok">Done</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const profileBtn=document.getElementById("profileBtn");
+const roleMenu=document.getElementById("roleMenu");
+const themeToggle=document.getElementById("themeToggle");
+const noticeText=document.getElementById("noticeText");
+
+profileBtn.onclick=()=>roleMenu.classList.toggle("open");
+
+document.addEventListener("click",e=>{
+ if(!roleMenu.contains(e.target)&&!profileBtn.contains(e.target)){
+   roleMenu.classList.remove("open");
+ }
+});
+
+themeToggle.onclick=(e)=>{
+ e.preventDefault();
+ const current=document.body.getAttribute("data-theme");
+ document.body.setAttribute("data-theme",current==="dark"?"light":"dark");
+};
+
+const notices=[
+ "Mid-sem exam form closes Friday at 5 PM.",
+ "Hackathon registration open.",
+ "Library open till 9 PM.",
+ "Fee portal maintenance Saturday."
+];
+
+let i=0;
+setInterval(()=>{
+ noticeText.textContent=notices[i];
+ i=(i+1)%notices.length;
+},3500);
+</script>
+
+</body>
+</html>

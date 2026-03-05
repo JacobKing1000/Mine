@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College ERP - सेटिंग्स</title>
+
+<style>
+:root{
+  --bg1:#e6d197;
+  --bg2:#eddcb0;
+  --glass:rgba(255,255,255,.55);
+  --glass-border:rgba(255,255,255,.8);
+  --text:#162e45;
+  --sub:#546b7d;
+  --accent:#7f5a00;
+  --shadow:0 18px 40px rgba(0,0,0,.15);
+  --gap:20px;
+}
+
+body[data-theme="dark"]{
+  --bg1:#1a1730;
+  --bg2:#2c2555;
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.15);
+  --text:#e8f1ff;
+  --sub:#a4b4cf;
+  --accent:#d6c3ff;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,255,255,.4),transparent 40%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+main{
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+}
+
+/* Glass */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(14px);
+  padding:20px;
+}
+
+/* TOP STRIP */
+.top-strip{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  z-index:1000;
+}
+
+.profile-wrap{
+  position:relative;
+  z-index:2000;
+}
+
+.profile-btn{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:999px;
+  padding:8px 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.avatar{
+  width:32px;height:32px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--accent);
+  color:white;
+  font-size:.8rem;
+}
+
+/* DROPDOWN */
+.modern-sidebar{
+  position:absolute;
+  right:0;
+  top:60px;
+  width:270px;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  box-shadow:0 40px 80px rgba(0,0,0,.3);
+  padding:15px;
+  display:none;
+  z-index:9999;
+}
+
+.modern-sidebar.open{display:block;}
+
+.menu-link{
+  display:block;
+  padding:10px 12px;
+  margin-bottom:8px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--text);
+  background:rgba(0,0,0,.05);
+  transition:.2s;
+}
+
+body[data-theme="dark"] .menu-link{
+  background:rgba(255,255,255,.08);
+}
+
+.menu-link:hover{
+  background:var(--accent);
+  color:white;
+  transform:translateX(4px);
+}
+
+.divider{
+  height:1px;
+  background:var(--glass-border);
+  margin:12px 0;
+}
+
+/* SETTINGS CONTENT */
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid var(--glass-border);
+}
+
+.row:last-child{
+  border-bottom:none;
+}
+
+.muted{
+  color:var(--sub);
+  margin-top:5px;
+}
+
+button, select{
+  padding:6px 12px;
+  border:1px solid var(--glass-border);
+  border-radius:8px;
+  background:var(--glass);
+  color:var(--text);
+  cursor:pointer;
+}
+
+button:hover{
+  background:var(--accent);
+  color:white;
+}
+</style>
+</head>
+
+<body data-theme="light">
+<main>
+
+<!-- TOP STRIP -->
+<section class="glass top-strip">
+  <div>
+    <strong>सेटिंग्स</strong>
+    <div class="muted">प्रोफ़ाइल and account preferences</div>
+  </div>
+
+  <div class="profile-wrap">
+    <button id="profileBtn" class="profile-btn">
+      <span class="avatar">SN</span>
+      छात्र नाम
+    </button>
+
+    <div id="roleMenu" class="modern-sidebar">
+      <a href="home_hi.html" class="menu-link">🏠 होम</a>
+      <a href="timetable_hi.html" class="menu-link">📅 समय सारणी</a>
+      <a href="fees_hi.html" class="menu-link">💳 शुल्क</a>
+      <a href="marks-records.html" class="menu-link">📊 अंक</a>
+      <a href="attendance_hi.html" class="menu-link">📌 उपस्थिति</a>
+      <a href="notices_hi.html" class="menu-link">📢 सूचनाएँ</a>
+      <a href="settings_hi.html" class="menu-link">⚙ सेटिंग्स</a>
+
+      <div class="divider"></div>
+
+      <a href="#" id="themeToggle" class="menu-link">🌙 Toggle Theme</a>
+    </div>
+  </div>
+</section>
+
+<!-- SETTINGS SECTION -->
+<section class="glass">
+  <div class="row">
+    <span>प्रोफ़ाइल</span>
+    <button>संपादित करें</button>
+  </div>
+
+  <div class="row">
+    <span>पासवर्ड</span>
+    <button>बदलें</button>
+  </div>
+
+  <div class="row">
+    <span>Notification Preference</span>
+    <button>Email + SMS</button>
+  </div>
+
+  <div class="row">
+    <span>भाषा</span>
+    <select>
+      <option>अंग्रेज़ी</option>
+      <option>हिंदी</option>
+    </select>
+  </div>
+</section>
+
+</main>
+
+<script>
+const profileBtn=document.getElementById("profileBtn");
+const roleMenu=document.getElementById("roleMenu");
+const themeToggle=document.getElementById("themeToggle");
+
+profileBtn.onclick=()=>roleMenu.classList.toggle("open");
+
+document.addEventListener("click",e=>{
+ if(!roleMenu.contains(e.target)&&!profileBtn.contains(e.target)){
+   roleMenu.classList.remove("open");
+ }
+});
+
+themeToggle.onclick=(e)=>{
+ e.preventDefault();
+ const current=document.body.getAttribute("data-theme");
+ document.body.setAttribute("data-theme",current==="dark"?"light":"dark");
+};
+</script>
+
+
+<script>
+const langSelect=document.querySelector("select");
+if(langSelect){
+langSelect.addEventListener("change",function(){
+ if(this.value.includes("English")){
+   window.location.href="settings.html";
+ }else{
+   window.location.href="settings_hi.html";
+ }
+});
+}
+</script>
+
+</body>
+</html>
